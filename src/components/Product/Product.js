@@ -8,9 +8,7 @@ import ProductForm from "../ProductForm/ProductForm";
 const Product = props => {
   const [currentColor, setCurrentColor] = useState(props.colors[0]);
   const [currentSize, setCurrentSize] = useState(props.sizes[0].name);
-  const [currentSizePrice, setCurrentSizePrice] = useState(
-    props.sizes[0].additionalPrice
-  );
+  const [currentSizePrice, setCurrentSizePrice] = useState(props.sizes[0].additionalPrice);
 
   function getPrice() {
     return props.basePrice + currentSizePrice;
@@ -21,7 +19,6 @@ const Product = props => {
     color: currentColor,
     size: currentSize,
     price: getPrice(),
-
   };
 
   return (

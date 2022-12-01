@@ -35,5 +35,4 @@ OptionColor.propTypes = {
     currentColor: PropTypes.string.isRequired,
 };
 
-
 export default OptionColor;
