@@ -1,30 +1,32 @@
 import styles from './Product.module.scss';
 import PropTypes from 'prop-types';
-import ProductImage from './ProductImage/ProductImage';
 import { useState } from 'react';
-import ProductForm from '../ProductForm/ProductForm';
+import ProductImage from '../ProductImage/ProductImage';
+import ProductForm from "../ProductForm/ProductForm";
+
 
 const Product = props => {
-
   const [currentColor, setCurrentColor] = useState(props.colors[0]);
-  const [currentSize, setCurrentSize] = useState(props.sizes[0]);
-  const [currentPrice, setCurrentPrice] = useState(props.sizes[0].additionalPrice);
+  const [currentSize, setCurrentSize] = useState(props.sizes[0].name);
+  const [currentSizePrice, setCurrentSizePrice] = useState(
+    props.sizes[0].additionalPrice
+  );
 
-  const getPrice = () => {
-    return props.basePrice + currentPrice;
+  function getPrice() {
+    return props.basePrice + currentSizePrice;
   }
 
   const addToCart = {
-    name: props.title, 
-    price: getPrice(),
-    size: currentSize,
+    name: props.title,
     color: currentColor,
-  };
+    size: currentSize,
+    price: getPrice(),
 
+  };
 
   return (
     <article className={styles.product}>
-      <ProductImage name={props.name} color={currentColor}/>
+      <ProductImage name={props.name} color={currentColor} />
       <div>
         <header>
           <h2 className={styles.name}>{props.title}</h2>
@@ -39,14 +41,14 @@ const Product = props => {
           currentSize={currentSize}
           addToCart={addToCart}
           onClick={props.onClick}
-          price={currentPrice}
-          actionPrice={setCurrentPrice}
+          price={currentSizePrice}
+          actionPrice={setCurrentSizePrice}
           sizes={props.sizes}
           type={props.type}
-        ></ProductForm>
+        />
       </div>
     </article>
-  )
+  );
 };
 
 Product.propTypes = {
